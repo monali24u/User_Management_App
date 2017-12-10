@@ -4,7 +4,7 @@
   "description": "Managing users data using React with Flux",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -14,13 +14,21 @@
   "license": "ISC",
   "devDependencies": {
     "flux": "*",
-    "reactify": "*",
-    "gulp": "*",
-    "browserify": "*",
+    "babel": "*",
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-preset-react": "*",
+    "babel-preset-es2015": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*",
+    "object-assign": "*",
+    "vinyl-source-stream": "*"
   },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "create-react-class":"*"
   },
   "bugs": {
     "url": "https://github.com/monali24u/User_Management_App/issues"

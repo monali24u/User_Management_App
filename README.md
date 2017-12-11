@@ -1,18 +1,31 @@
 
-User Management App
+User Management Application
 
-What's in the UI?
-- Displays a list of users using JSX
-- Add and remove users
-- Update existing user information
-- User info includes
+What is in the UI?
+- User info
     - First name
     - Last name
     - Address
-
-Running the application
+- User actions
+  - Add and remove users
+  - Displays a list of users using JSX
+  - Update existing user information
 
 
 Code Organization
-state and props
-React and Flux lifecycles
+- Entry point - ./src/js/main.js
+- View handling - ./src/js/components
+- Store handling - ./src/js/stores
+- actions handling - ./src/js/actions
+- dispatcher - ./src/js/dispatcher
+
+Dependencies
+- react
+- flux
+- babel
+- webpack
+
+Running the application
+- npm install
+- npm start
+- Copy the local host url and open in browser

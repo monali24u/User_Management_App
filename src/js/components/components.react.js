@@ -18,6 +18,19 @@ export default class App extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillMount(){
+    UserStore.on("change", () => {
+    this.setState({
+      users : UserStore.getAll(),
+    })
+
+    var updateuser = UserStore.getUpdateUser();
+    this.state.s_fname = updateuser.userfirstname;
+    this.state.s_lname = updateuser.userlastname;
+    this.state.s_address = updateuser.useraddress;
+  })
+  }
+
   //Gets change from text boxes
   onChange(e) {
         this.setState({[e.target.name]: e.target.value})
@@ -44,7 +57,7 @@ export default class App extends React.Component {
         UserActions.editUser(user);
   };
 
-
+//<li>{firstname} : {user.userfirstname} {lastname} : {user.userlastname}  {address} : {user.useraddress} <button id={user.id} onClick={(e) => this.deleteUser(e)}>Delete</button></li>
   render(){
     const firstname  = "First Name";
     const lastname   = "Last Name";

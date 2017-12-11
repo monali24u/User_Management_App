@@ -1,13 +1,13 @@
 module.exports = {
    entry: './src/js/main.js',
    output: {
-      path:'/Users/Monali/Study/myProjects/ReactApp/dist',
-      filename: 'bundle.js',
-      publicPath: '/'
+      path: __dirname + './dist',
+      filename: 'bundle.js'
    },
    devServer: {
       inline: true,
-      contentBase: './dist',
+      port: 3333,
+      contentBase: './dist'
    },
    module: {
       loaders: [

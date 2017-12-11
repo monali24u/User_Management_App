@@ -18,6 +18,33 @@ export default class App extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
+  //Gets change from text boxes
+  onChange(e) {
+        this.setState({[e.target.name]: e.target.value})
+  }
+  createUser(){
+      if(this.state.s_updatebuttonstate == false){
+         UserActions.createUser(this.state.s_fname, this.state.s_lname, this.state.s_address);
+       }
+       else {
+        var updateuser = UserStore.getUpdateUser();
+         UserActions.updateUser(updateuser.id, this.state.s_fname, this.state.s_lname, this.state.s_address);
+         this.state.s_updatebuttonstate = false;
+       }
+       this.state.s_fname = "";
+       this.state.s_lname = "";
+       this.state.s_address = "";
+  };
+
+  deleteUser(user){
+    UserActions.deleteUser(user);
+  };
+  editUser(user){
+        this.state.s_updatebuttonstate = true;
+        UserActions.editUser(user);
+  };
+
+
   render(){
     const firstname  = "First Name";
     const lastname   = "Last Name";

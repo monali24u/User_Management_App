@@ -2,8 +2,14 @@ import React from "react";
 import Name from "./name.react";
 import * as UserActions from "../actions/actions.flux"
 import UserStore from "../stores/stores.flux"
+import { withStyles } from "material-ui/styles"
+import Button from "material-ui/Button"
+import Input from 'material-ui/Input';
+import Grid from 'material-ui/Grid';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 
 export default class App extends React.Component {
+
   constructor(){
     super();
     this.state ={
@@ -30,6 +36,7 @@ export default class App extends React.Component {
     this.state.s_address = updateuser.useraddress;
   })
   }
+
 
   //Gets change from text boxes
   onChange(e) {
@@ -63,7 +70,6 @@ export default class App extends React.Component {
     const lastname   = "Last Name";
     const address    = "Address";
     var addupdate    = "Add";
-    const space = "   ";
 
      if(this.state.s_updatebuttonstate == true)
      {
@@ -71,27 +77,52 @@ export default class App extends React.Component {
      }
 
     var userComponents = this.state.users.map(function(user) {
-        return(<div className="user" key={user.id}>
-          <li>{firstname} : {user.userfirstname}{space}
-              {lastname} : {user.userlastname}{space}
-              {address} : {user.useraddress}{space}
-              <button onClick={this.editUser.bind(this, user)}>Edit</button>
-              <button onClick={this.deleteUser.bind(this, user)}>Delete</button>
-          </li>
-        </div>)
+        return(
+          <TableRow className="user" key={user.id}>
+            <TableCell>{user.userfirstname}</TableCell>
+            <TableCell>{user.userlastname}</TableCell>
+            <TableCell>{user.useraddress}</TableCell>
+            <TableCell><Button raised color="primary" onClick={this.editUser.bind(this, user)}>Edit</Button></TableCell>
+            <TableCell><Button raised color="accent" onClick={this.deleteUser.bind(this, user)}>Delete</Button></TableCell>
+          </TableRow>
+          )
     }.bind(this));
 
     return(
     <div>
-        <h1>{this.state.s_appname}</h1>
-        <Name p_name = {firstname}/>
-        <input name="s_fname" value={this.state.s_fname} onChange={this.onChange} />
-        <Name p_name = {lastname}/>
-        <input name="s_lname" value={this.state.s_lname} onChange={this.onChange} />
-        <Name p_name = {address}/>
-        <input name="s_address" value={this.state.s_address} onChange={this.onChange} />
-        <button onClick={this.createUser.bind(this)}>{addupdate}</button>
-        <ul>{userComponents}</ul>
+    <Grid container spacing={24}>
+        <Grid style={{background:'#90CAF9'}} item xs={12}>
+          <h1 style={{textAlign: 'center', color:'#E040FB'}}>{this.state.s_appname}</h1>
+        </Grid>
+        <Grid item xs={12} sm={5}>
+          <form>
+            <Name p_name = {firstname}/>
+            <Input style={{width: 300 + 'px'}} placeholder="Your Name.." name="s_fname" value={this.state.s_fname} onChange={this.onChange} />
+            <Name p_name = {lastname}/>
+            <Input style={{maxLength: 10, width: 300 + 'px'}} placeholder="Your Last Name.." name="s_lname" value={this.state.s_lname} onChange={this.onChange} />
+            <Name p_name = {address}/>
+            <Input style={{width: 300 + 'px'}} placeholder="Your Address.." name="s_address" value={this.state.s_address} onChange={this.onChange} />
+            <div style={{height: 30 + 'px'}}/>
+            <Button raised color="primary" onClick={this.createUser.bind(this)}>{addupdate}</Button>
+          </form>
+        </Grid>
+        <Grid item xs={12} sm={7}>
+        <Table>
+          <TableHead>
+            <TableRow style={{fontSize: 15 + 'px', color:"black"}}>
+              <TableCell>{firstname}</TableCell>
+              <TableCell>{lastname}</TableCell>
+              <TableCell>{address}</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+              {userComponents}
+          </TableBody>
+        </Table>
+        </Grid>
+      </Grid>
     </div>
     )
   };

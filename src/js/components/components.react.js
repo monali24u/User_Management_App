@@ -7,6 +7,7 @@ import Button from "material-ui/Button"
 import Input from 'material-ui/Input';
 import Grid from 'material-ui/Grid';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
 
 export default class App extends React.Component {
 
@@ -94,19 +95,21 @@ export default class App extends React.Component {
         <Grid style={{background:'#90CAF9'}} item xs={12}>
           <h1 style={{textAlign: 'center', color:'#E040FB'}}>{this.state.s_appname}</h1>
         </Grid>
-        <Grid item xs={12} sm={5}>
-          <form>
-            <Name p_name = {firstname}/>
-            <Input style={{width: 300 + 'px'}} placeholder="Your Name.." name="s_fname" value={this.state.s_fname} onChange={this.onChange} />
-            <Name p_name = {lastname}/>
-            <Input style={{maxLength: 10, width: 300 + 'px'}} placeholder="Your Last Name.." name="s_lname" value={this.state.s_lname} onChange={this.onChange} />
-            <Name p_name = {address}/>
-            <Input style={{width: 300 + 'px'}} placeholder="Your Address.." name="s_address" value={this.state.s_address} onChange={this.onChange} />
-            <div style={{height: 30 + 'px'}}/>
-            <Button raised color="primary" onClick={this.createUser.bind(this)}>{addupdate}</Button>
-          </form>
+        <Grid item xs={12} sm={4}>
+          <Paper elevation={3}>
+            <form style={{padding: 20 + 'px'}}>
+              <Name p_name = {firstname}/>
+              <Input style={{width: 300 + 'px'}}  maxLength="10" placeholder="Your Name.." name="s_fname" value={this.state.s_fname} onChange={this.onChange} />
+              <Name p_name = {lastname}/>
+              <Input style={{maxLength: 10, width: 300 + 'px'}} placeholder="Your Last Name.." name="s_lname" value={this.state.s_lname} onChange={this.onChange} />
+              <Name p_name = {address}/>
+              <Input style={{width: 300 + 'px'}} placeholder="Your Address.." name="s_address" value={this.state.s_address} onChange={this.onChange} />
+              <div style={{height: 30 + 'px'}}/>
+              <Button raised color="primary" onClick={this.createUser.bind(this)}>{addupdate}</Button>
+            </form>
+            </Paper>
         </Grid>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={8}>
         <Table>
           <TableHead>
             <TableRow style={{fontSize: 15 + 'px', color:"black"}}>
